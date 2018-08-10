@@ -1,0 +1,33 @@
+﻿@page "/queue"
+@inject HttpClient Http
+@inherits QueueComponent
+
+<h1>Queue</h1>
+
+<div>
+	@if (Me == null)
+	{
+		<input bind="@PlayerName" placeholder="Name" />
+		<button onclick="@JoinQueueAsync">Join Queue</button>
+	}
+
+	else
+	{
+		<button onclick="@LeaveQueueAsync">Leave Queue</button>
+	}
+</div>
+
+@if (Players.Count == 0)
+{
+	<p><em>No one is in the queue.</em></p>
+}
+
+else
+{
+	<ul>
+		@foreach (var player in Players)
+		{
+			<li>@player.Name</li>
+		}
+	</ul>
+}
